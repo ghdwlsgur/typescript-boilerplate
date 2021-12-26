@@ -1,9 +1,13 @@
-import { Controller, Get } from 'routing-controllers';
+import { NextFunction, Request, Response } from 'express';
 
-@Controller()
-export class IndexController {
-  @Get('/')
-  index() {
-    return 'OK';
-  }
+class IndexController {
+  public index = (req: Request, res: Response, next: NextFunction): void => {
+    try {
+      res.sendStatus(200);
+    } catch (error) {
+      next(error);
+    }
+  };
 }
+
+export default IndexController;
